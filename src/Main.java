@@ -1,7 +1,7 @@
 
 public static void main(String[] args) {
 
-    String s = "Java";
+    String s = "J@va the be$t!123";
     int n = s.length();        // 4
     char c = s.charAt(0);      // 'J'
 
@@ -19,15 +19,23 @@ public static void main(String[] args) {
     int right = chars.length - 1;
 
     while (left < right) {
-        char tmp = chars[left];     // меняем местами края
-        chars[left] = chars[right];
-        chars[right] = tmp;
-        left++;                     // сдвигаем указатели навстречу
-        right--;
+
+        if (Character.isLetter(chars[left]) == true) {
+
+            char tmp = chars[left];     // меняем местами края
+            if (Character.isLetter(chars[right]) == true) {
+                chars[left] = chars[right];
+                chars[right] = tmp;
+                left++;                     // сдвигаем указатели навстречу
+                right--;
+            } else {
+                right--;
+            }
+
+        } else {
+            left++;
+        }
     }
-
-    System.out.println(new String(chars));  // "avaJ"
-
-
+    System.out.println(new String(chars));  //
 
 }
