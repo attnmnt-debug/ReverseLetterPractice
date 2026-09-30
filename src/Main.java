@@ -2,7 +2,7 @@
 public static void main(String[] args) {
 
     String s = "J@va the be$t!123";
-    int n = s.length();        // 4
+    int n = s.length();        // '17'
     char c = s.charAt(0);      // 'J'
 
     Character.isLetter('a');   // true
@@ -10,7 +10,7 @@ public static void main(String[] args) {
     Character.isLetter('@');   // false
     Character.isLetter(' ');   // false
 
-    char[] chars = s.toCharArray();   // ['J','a','v','a'] — массив символов
+    char[] chars = s.toCharArray();   // ['J','a','v','a',' ','t','h','e',' ','b','e','$','t','!','1','2','3'] — массив символов
 // ... меняем нужные элементы массива ...
     String result = new String(chars);   // массив символов → строка
 //----------------------------------------------------------------------------------------------------------------------
@@ -20,10 +20,14 @@ public static void main(String[] args) {
 
     while (left < right) {
 
-        if (Character.isLetter(chars[left]) == true) {
+        if (!Character.isLetter(chars[left])) {
+            left++;
+            continue;
+        }
 
-            char tmp = chars[left];     // меняем местами края
-            if (Character.isLetter(chars[right]) == true) {
+                 // меняем местами края
+            if (Character.isLetter(chars[right])) {
+                char tmp = chars[left];
                 chars[left] = chars[right];
                 chars[right] = tmp;
                 left++;                     // сдвигаем указатели навстречу
@@ -32,10 +36,8 @@ public static void main(String[] args) {
                 right--;
             }
 
-        } else {
-            left++;
-        }
     }
+
     System.out.println(new String(chars));  //
 
 }
